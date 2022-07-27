@@ -53,7 +53,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
 //$routes->get('/contacto', 'Home::contacto');
 $routes->get('/movie', 'dashboard\MovieController::index');
-$routes->get('/movie/test', 'dashboard\MovieController::test');
+$routes->get('/movie/test/(:any)', 'dashboard\MovieController::test/$1');
 $routes->get('/category', 'dashboard\CategoryController::index');
 
 
