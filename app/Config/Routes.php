@@ -36,6 +36,15 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+// en esta ruta se configura para poder mandar datos desde la url a la funcion de algun controlador
+/*
+    - Se tiene que especificar el tipo de dato que se va a enviar, en este caso el (:any).
+    - Al final de la url se coloca la pocision donde se lva recibir el dato en est caso como solo es un paraetro se coloca el $1,
+    en caso de haber mas parametros esto puede incremtar hasta $n segun la cantidad de parametrs.
+    - Si no se mndan los parametros solicitados en la url se obtendra un herror.
+*/
+$routes->get('/contacto/(:alphanum)', 'Home::contacto/$1');
+$routes->get('/contacto', 'Home::contacto');
 $routes->get('/movie', 'dashboard\MovieController::index');
 $routes->get('/movie/test', 'dashboard\MovieController::test');
 $routes->get('/category', 'dashboard\CategoryController::index');

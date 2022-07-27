@@ -9,4 +9,3 @@
 <body>
     
 <h1><?= $title//clave del array usado como variable en la vista ?></h1>
-<h5><?= $title2 ?></h5>
