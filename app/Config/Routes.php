@@ -43,7 +43,14 @@ $routes->get('/', 'Home::index');
     en caso de haber mas parametros esto puede incremtar hasta $n segun la cantidad de parametrs.
     - Si no se mndan los parametros solicitados en la url se obtendra un herror.
 */
-$routes->get('/contactame/(:any)', 'Home::contacto/$1');
+
+/*
+    NOMBRE EN LAS RUTAS 
+     
+    se puede acceder a la ruta con el nombre que se le ponga  a la misma medinate un metodo, 
+    para asi en caso de que se tenga qie modicfiar la url no haya problemas dentro del codigo
+*/
+$routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
 //$routes->get('/contacto', 'Home::contacto');
 $routes->get('/movie', 'dashboard\MovieController::index');
 $routes->get('/movie/test', 'dashboard\MovieController::test');
