@@ -43,8 +43,8 @@ $routes->get('/', 'Home::index');
     en caso de haber mas parametros esto puede incremtar hasta $n segun la cantidad de parametrs.
     - Si no se mndan los parametros solicitados en la url se obtendra un herror.
 */
-$routes->get('/contacto/(:alphanum)', 'Home::contacto/$1');
-$routes->get('/contacto', 'Home::contacto');
+$routes->get('/contactame/(:any)', 'Home::contacto/$1');
+//$routes->get('/contacto', 'Home::contacto');
 $routes->get('/movie', 'dashboard\MovieController::index');
 $routes->get('/movie/test', 'dashboard\MovieController::test');
 $routes->get('/category', 'dashboard\CategoryController::index');
