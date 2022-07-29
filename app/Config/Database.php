@@ -31,23 +31,24 @@ class Database extends Config
      * @var array
      */
     public $default = [
-        'DSN'      => '',
+        'DSN'      => 'pgsql:host=localhost;port=5432;dbname=Codeigniter4;user=postgres;password=aTY4ZssWqS%AG^UopTEe',
         'hostname' => 'localhost',
         'username' => '',
         'password' => '',
-        'database' => '',
-        'DBDriver' => 'MySQLi',
+        'database' => 'movies',
+        'DBDriver' => 'Postgre',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
         'swapPre'  => '',
+        'schema' => 'MIBDOFFI',
         'encrypt'  => false,
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 3306,
+        'port'     => 5432,
     ];
 
     /**
