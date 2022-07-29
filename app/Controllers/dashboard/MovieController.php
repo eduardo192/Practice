@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\dashboard;
 
 // este use se coloca para que podamos alcanzar el Base Controller desde la capreta en la que estamos.
+use App\Models\MovieModel;
 use App\Controllers\BaseController;
 
 class MovieController extends BaseController{
@@ -41,5 +42,11 @@ class MovieController extends BaseController{
         echo view("dashboard/templates/header",$dataHeader);
         echo view("dashboard/movies/index",$data);
         echo view("dashboard/templates/footer");
+    }
+
+    public function show (){
+        $movie = new MovieModel();
+
+        var_dump($movie->get());
     }
 }
