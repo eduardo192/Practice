@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 
 class MovieController extends BaseController{
     public function index(){
+
+        $movie = new MovieModel();
         
         //array que contine los valores que se van a madra por parametro a las vistas
         $dataHeader = [
@@ -15,7 +17,7 @@ class MovieController extends BaseController{
         ];
 
         $data = [
-            'movies' => array(0,1,2,3,4)
+            'movies' => $movie->get()
 
         ];
 
@@ -47,6 +49,6 @@ class MovieController extends BaseController{
     public function show (){
         $movie = new MovieModel();
 
-        var_dump($movie->get());
+        var_dump($movie->get(1)['title']);
     }
 }
