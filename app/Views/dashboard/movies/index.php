@@ -18,3 +18,5 @@
         
     </tbody>
 </table>
+
+<?= $pager->links() ?>

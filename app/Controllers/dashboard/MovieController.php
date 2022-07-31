@@ -17,7 +17,12 @@ class MovieController extends BaseController{
         ];
 
         $data = [
-            'movies' => $movie->get()
+            /* 
+                paginate nos ayuda a hacer la paginacion.
+                El primer parametro indica la cantidad de registros que queremos traer a la vez.
+            */
+            'movies' => $movie->asObject()->paginate(5),
+            'pager' => $movie->pager
 
         ];
 
