@@ -15,7 +15,7 @@ class MovieModel extends Model
             return $this->asObject()->findAll(10);
         }
 
-        return $this->asObject()->where(['id' => $id])->first();
+        return $this->asObject()->where(['id' => $id]);
     }
 
 }

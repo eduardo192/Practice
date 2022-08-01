@@ -30,6 +30,17 @@ class Movie extends BaseController{
         
     }
 
+    public function create(){
+        echo "create";        
+    }
+
+    public function testPost(){
+        echo "Datos: ";
+        echo $this->request->getPost('title');
+        echo " ";
+        echo $this->request->getPost('description');
+               
+    }
 
     public function show ($id = null){
         $movie = new MovieModel();

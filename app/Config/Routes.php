@@ -54,6 +54,7 @@ $routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
 //$routes->get('/contacto', 'Home::contacto');
 
 $routes->get('/category', 'dashboard\CategoryController::index');
+$routes->post('/movie/post', 'Movie::testPost');
 
 /*
     Agrupacion de URL.
@@ -63,12 +64,12 @@ $routes->get('/category', 'dashboard\CategoryController::index');
 */
 
 $routes->group('dashboard', function($routes){
-    $routes->resource('movie');
+    
     /*$routes->get('movie', 'dashboard\MovieController::index');
     $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
     $routes->get('movie/show', 'dashboard\MovieController::show');*/
 });
-
+$routes->resource('movie');
 
 
 /*
