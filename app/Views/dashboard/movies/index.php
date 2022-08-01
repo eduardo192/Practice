@@ -19,4 +19,4 @@
     </tbody>
 </table>
 
-<?= $pager->links() ?>
+<?= $pager->links()//Crea los links de forma automatica para la paginacion ?>

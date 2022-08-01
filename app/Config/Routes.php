@@ -52,11 +52,21 @@ $routes->get('/', 'Home::index');
 */
 $routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
 //$routes->get('/contacto', 'Home::contacto');
-$routes->get('/movie', 'dashboard\MovieController::index');
-$routes->get('/movie/test/(:any)', 'dashboard\MovieController::test/$1');
-$routes->get('/movie/show', 'dashboard\MovieController::show');
+
 $routes->get('/category', 'dashboard\CategoryController::index');
 
+/*
+    Agrupacion de URL.
+
+    en este  caso se agrupan las urls del controlador movie.
+    Para acceder a ellas se tiene que hacer de la sig manera mgarcia.com/dashboard/"url del controlador"
+*/
+
+$routes->group('dashboard', function($routes){
+    $routes->get('movie', 'dashboard\MovieController::index');
+    $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
+    $routes->get('movie/show', 'dashboard\MovieController::show');
+});
 
 
 /*

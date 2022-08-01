@@ -12,10 +12,10 @@ class MovieModel extends Model
     public function get($id = null)
     {
         if ($id === null) {
-            return $this->asObject()->findAll(10,10);
+            return $this->asObject()->findAll(10);
         }
 
-        return $this->asObjact()->where(['id' => $id])->first();
+        return $this->asObject()->where(['id' => $id])->first();
     }
 
 }

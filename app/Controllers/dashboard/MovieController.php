@@ -22,6 +22,7 @@ class MovieController extends BaseController{
                 El primer parametro indica la cantidad de registros que queremos traer a la vez.
             */
             'movies' => $movie->asObject()->paginate(5),
+            //instncia para poder usar el pager link
             'pager' => $movie->pager
 
         ];
@@ -54,6 +55,6 @@ class MovieController extends BaseController{
     public function show (){
         $movie = new MovieModel();
 
-        var_dump($movie->get(1)['title']);
+        var_dump($movie->get(1)->title);
     }
 }
