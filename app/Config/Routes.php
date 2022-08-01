@@ -63,10 +63,12 @@ $routes->get('/category', 'dashboard\CategoryController::index');
 */
 
 $routes->group('dashboard', function($routes){
-    $routes->get('movie', 'dashboard\MovieController::index');
+    $routes->resource('movie');
+    /*$routes->get('movie', 'dashboard\MovieController::index');
     $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
-    $routes->get('movie/show', 'dashboard\MovieController::show');
+    $routes->get('movie/show', 'dashboard\MovieController::show');*/
 });
+
 
 
 /*
