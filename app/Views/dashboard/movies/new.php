@@ -1,3 +1,5 @@
+
+<?= $validation->listErrors() ?>
 <form action="post" method="POST">
 
     <label for="title">Title</label>

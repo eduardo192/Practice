@@ -25,8 +25,11 @@ class Movie extends BaseController{
 
     public function new(){
         $movie = new MovieModel();
+
+        //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
+        $validation = \Config\Services::validation();
         
-        $this->_loadDefaulView('Crear una Pelicula', [], 'new');
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
         
     }
 
@@ -35,10 +38,24 @@ class Movie extends BaseController{
     }
 
     public function testPost(){
-        echo "Datos: ";
-        echo $this->request->getPost('title');
-        echo " ";
-        echo $this->request->getPost('description');
+        
+        if($this->validate([
+            'title' => 'required|min_length[3]|max_length[255]',
+            'description' => 'min_length[3]|max_length[5000]'
+        ])){
+            echo "Datos: ";
+            echo $this->request->getPost('title');
+            echo " ";
+            echo $this->request->getPost('description');
+        }else{
+            echo "error";
+            $validation = \Config\Services::validation();
+        
+            $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
+        
+        }
+        
+        
                
     }
 
