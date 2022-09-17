@@ -4,6 +4,7 @@
 use App\Models\MovieModel;
 
 class Movie extends BaseController{
+   
     public function index(){
 
         $movie = new MovieModel();
@@ -38,23 +39,21 @@ class Movie extends BaseController{
     }
 
     public function testPost(){
-        
+        $movie = new MovieModel();
+
         if($this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
             'description' => 'min_length[3]|max_length[5000]'
         ])){
-            echo "Datos: ";
-            echo $this->request->getPost('title');
-            echo " ";
-            echo $this->request->getPost('description');
+            $movie->save([
+                "title" => $this->request->getPost('title'),
+                "description" => $this->request->getPost('description')
+            ]);
         }else{
-            echo "error";
-            $validation = \Config\Services::validation();
-        
-            $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
-        
         }
         
+        $validation = \Config\Services::validation();    
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
         
                
     }
