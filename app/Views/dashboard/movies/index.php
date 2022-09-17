@@ -12,7 +12,11 @@
             <tr>
                 <td><?= $m->id ?></td>
                 <td><?= $m->title ?></td>
-                <td></td>
+                <td>
+                    <form action="/movie/delete/<?= $m->id ?>" method="POST">
+                        <input type="submit" name="submit" value="Borrar" />
+                    </form>
+                </td>
             </tr>
         <?php endforeach ?>
         

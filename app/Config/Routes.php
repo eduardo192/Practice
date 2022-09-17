@@ -55,6 +55,7 @@ $routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
 
 $routes->get('/category', 'dashboard\CategoryController::index');
 $routes->post('/movie/post', 'Movie::testPost');
+$routes->post('/movie/delete/(:num)', 'Movie::delete/$1');
 
 /*
     Agrupacion de URL.

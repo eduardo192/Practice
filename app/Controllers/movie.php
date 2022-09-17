@@ -6,7 +6,7 @@ use App\Models\MovieModel;
 class Movie extends BaseController{
    
     public function index(){
-
+        echo session("message");
         $movie = new MovieModel();
 
         $data = [
@@ -14,7 +14,7 @@ class Movie extends BaseController{
                 paginate nos ayuda a hacer la paginacion.
                 El primer parametro indica la cantidad de registros que queremos traer a la vez.
             */
-            'movies' => $movie->asObject()->paginate(5),
+            'movies' => $movie->asObject()->paginate(10),
             //instncia para poder usar el pager link
             'pager' => $movie->pager
 
@@ -25,7 +25,7 @@ class Movie extends BaseController{
     }
 
     public function new(){
-        $movie = new MovieModel();
+        echo "Session: ".session("message");
 
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
@@ -48,7 +48,8 @@ class Movie extends BaseController{
             $movie->save([
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description')
-            ]);
+            ]);// Insserta los datos en la tabla
+            return redirect()->to("/movie/new")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
         }else{
         }
         
@@ -62,6 +63,12 @@ class Movie extends BaseController{
         $movie = new MovieModel();
 
         var_dump($movie->get($id));
+    }
+
+    public function delete ($id = null){
+        $movie = new MovieModel();
+        $movie->delete($id);
+        return redirect()->to("/movie")->with("message", "pelicula eliminada con exito");        
     }
 
     private function _loadDefaulView($title,$data,$view){
