@@ -16,6 +16,8 @@
                     <form action="/movie/delete/<?= $m->id ?>" method="POST">
                         <input type="submit" name="submit" value="Borrar" />
                     </form>
+
+                    <a href="/movie/<?= $m->id ?>/edit">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>

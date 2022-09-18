@@ -34,6 +34,35 @@ class Movie extends BaseController{
         
     }
 
+    public function edit($id = null){
+        $movie = new MovieModel();
+
+        echo "Session: ".session("message");
+
+        //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
+        $validation = \Config\Services::validation();
+        
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => $movie->asObject()->find($id)], 'edit');
+        
+    }
+
+    public function update($id = null){
+        $movie = new MovieModel();
+
+        if($this->validate([
+            'title' => 'required|min_length[3]|max_length[255]',
+            'description' => 'min_length[3]|max_length[5000]'
+        ])){
+            $movie->update($id, [
+                "title" => $this->request->getPost('title'),
+                "description" => $this->request->getPost('description')
+            ]);// Insserta los datos en la tabla
+            return redirect()->to("/movie")->with("message", "pelicula actualizada con exito");
+        }   
+    }
+
+
+
     public function create(){
         echo "create";        
     }
@@ -58,6 +87,8 @@ class Movie extends BaseController{
         
                
     }
+
+    
 
     public function show ($id = null){
         $movie = new MovieModel();

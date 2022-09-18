@@ -70,7 +70,10 @@ $routes->group('dashboard', function($routes){
     $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
     $routes->get('movie/show', 'dashboard\MovieController::show');*/
 });
-$routes->resource('movie');
+
+$routes->get('movie', 'Movie::index');
+$routes->get("movie/(:any)/edit", "Movie::edit/$1");
+$routes->post("movie/update/(:any)", "Movie::update/$1");
 
 
 /*
