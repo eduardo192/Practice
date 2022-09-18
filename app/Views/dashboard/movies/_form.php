@@ -6,7 +6,8 @@
 <label for="description">Text</label>
 <textarea name="description" id="description" cols="45" rows="4"><?= old("description", $movie->description) ?></textarea><br />
 
-<label for="image">Imagen</label>
-<input type="file" name="image" />
-
-<input type="submit" name="submit" value="Guardar" />
+<?php if(!$created): ?>
+    <label for="image">Imagen</label>
+    <input type="file" name="image" />
+<?php endif ?>
+<input type="submit" name="submit" value="<?= $textButton ?>" />

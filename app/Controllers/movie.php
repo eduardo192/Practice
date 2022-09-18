@@ -73,11 +73,11 @@ class Movie extends BaseController{
             'title' => 'required|min_length[3]|max_length[255]',
             'description' => 'min_length[3]|max_length[5000]'
         ])){
-            $movie->save([
+            $id = $movie->insert([
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
-            return redirect()->to("/movie/new")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
+            return redirect()->to("/movie/$id/edit")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
         }
         return redirect()->back()->withInput();
                
