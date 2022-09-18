@@ -2,6 +2,8 @@
 
 // este use se coloca para que podamos alcanzar el Base Controller desde la capreta en la que estamos.
 use App\Models\MovieModel;
+use App\Models\MovieImagesModel;
+
 
 class Movie extends BaseController{
    
@@ -58,16 +60,10 @@ class Movie extends BaseController{
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
 
-            $this->_upload();
+            $this->_upload($id);
             return redirect()->to("/movie")->with("message", "pelicula actualizada con exito");
         }
         return redirect()->back()->withInput();// redirecciona a la vista anterior mandado los datos que se teneian como mensaje tipo flash   
-    }
-
-
-
-    public function create(){
-        echo "create";        
     }
 
     public function testPost(){
@@ -81,7 +77,6 @@ class Movie extends BaseController{
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
-            $this->_upload();
             return redirect()->to("/movie/new")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
         }
         return redirect()->back()->withInput();
@@ -102,12 +97,19 @@ class Movie extends BaseController{
     }
 
 
-    private function _upload(){
+    private function _upload($movieId){
+        $images = new MovieImagesModel();
         if ($imagefile = $this->request->getFile("image")) {
            
             if ($imagefile->isValid() && ! $imagefile->hasMoved()) {
+                
                 $newName = $imagefile->getRandomName();
                 $imagefile->move(WRITEPATH . 'uploads', $newName);
+
+                $images->save([
+                    "movieId" => $movieId,
+                    "images" => $newName
+                ]);
             }
             
         }
