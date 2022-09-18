@@ -72,6 +72,7 @@ $routes->group('dashboard', function($routes){
 });
 
 $routes->get('movie', 'Movie::index');
+$routes->get('movie/new', 'Movie::new');
 $routes->get("movie/(:any)/edit", "Movie::edit/$1");
 $routes->post("movie/update/(:any)", "Movie::update/$1");
 

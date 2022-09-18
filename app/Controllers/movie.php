@@ -30,7 +30,7 @@ class Movie extends BaseController{
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
         
-        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => new MovieModel()], 'new');
         
     }
 
@@ -58,7 +58,8 @@ class Movie extends BaseController{
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
             return redirect()->to("/movie")->with("message", "pelicula actualizada con exito");
-        }   
+        }
+        return redirect()->back()->withInput();// redirecciona a la vista anterior mandado los datos que se teneian como mensaje tipo flash   
     }
 
 
@@ -79,12 +80,8 @@ class Movie extends BaseController{
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
             return redirect()->to("/movie/new")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
-        }else{
         }
-        
-        $validation = \Config\Services::validation();    
-        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation], 'new');
-        
+        return redirect()->back()->withInput();
                
     }
 

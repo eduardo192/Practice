@@ -13,7 +13,7 @@ class MovieModel extends Model
     public function get($id = null)
     {
         if ($id === null) {
-            return $this->asObject()->findAll(10);
+            return $this->asObject()->findAll();
         }
 
         return $this->asObject()->where(['id' => $id]);
