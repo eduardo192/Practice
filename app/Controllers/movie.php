@@ -37,7 +37,7 @@ class Movie extends BaseController{
     public function edit($id = null){
         $movie = new MovieModel();
 
-        echo "Session: ".session("message");
+        echo "Session: ";
 
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
@@ -57,6 +57,8 @@ class Movie extends BaseController{
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
+
+            $this->_upload();
             return redirect()->to("/movie")->with("message", "pelicula actualizada con exito");
         }
         return redirect()->back()->withInput();// redirecciona a la vista anterior mandado los datos que se teneian como mensaje tipo flash   
@@ -79,12 +81,12 @@ class Movie extends BaseController{
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description')
             ]);// Insserta los datos en la tabla
+            $this->_upload();
             return redirect()->to("/movie/new")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
         }
         return redirect()->back()->withInput();
                
     }
-
     
 
     public function show ($id = null){
@@ -97,6 +99,18 @@ class Movie extends BaseController{
         $movie = new MovieModel();
         $movie->delete($id);
         return redirect()->to("/movie")->with("message", "pelicula eliminada con exito");        
+    }
+
+
+    private function _upload(){
+        if ($imagefile = $this->request->getFile("image")) {
+           
+            if ($imagefile->isValid() && ! $imagefile->hasMoved()) {
+                $newName = $imagefile->getRandomName();
+                $imagefile->move(WRITEPATH . 'uploads', $newName);
+            }
+            
+        }
     }
 
     private function _loadDefaulView($title,$data,$view){

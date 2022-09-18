@@ -1,4 +1,7 @@
-<table>
+<a href="/movie/new">Crear</a>
+
+
+<table class="table">
     <thead>
         <tr>
             <th>Id</th>

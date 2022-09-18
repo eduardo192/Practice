@@ -14,3 +14,4 @@
     -->
     <a href="<?= route_to('contacto','Jusan')?>">Contacto</a>
     <h1><?= $title//clave del array usado como variable en la vista ?></h1>
+    <?= view("dashboard/partials/_session"); ?>
