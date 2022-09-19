@@ -30,6 +30,7 @@ class Movie extends BaseController{
     public function new(){
         $category = new CategoryModel();
 
+
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
         
@@ -39,6 +40,7 @@ class Movie extends BaseController{
 
     public function edit($id = null){
         $movie = new MovieModel();
+        $category = new CategoryModel();
 
         if ($movie->find($id) == null) {
             throw PageNotFoundException::forPageNotFound();
@@ -50,7 +52,7 @@ class Movie extends BaseController{
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
         
-        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => $movie->asObject()->find($id)], 'edit');
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => $movie->asObject()->find($id), "categories" => $category->asObject()->findAll()], 'edit');
         
     }
 
@@ -63,7 +65,8 @@ class Movie extends BaseController{
         ])){
             $movie->update($id, [
                 "title" => $this->request->getPost('title'),
-                "description" => $this->request->getPost('description')
+                "description" => $this->request->getPost('description'),
+                "categoryId" => $this->request->getPost('categoryId')
             ]);// Insserta los datos en la tabla
 
             $this->_upload($id);
