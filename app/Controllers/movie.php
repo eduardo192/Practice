@@ -2,6 +2,7 @@
 
 // este use se coloca para que podamos alcanzar el Base Controller desde la capreta en la que estamos.
 use App\Models\MovieModel;
+use App\Models\CategoryModel;
 use App\Models\MovieImagesModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -27,12 +28,12 @@ class Movie extends BaseController{
     }
 
     public function new(){
-        echo "Session: ".session("message");
+        $category = new CategoryModel();
 
         //Para que la visualizacion de errores funcione es necesario instanciar a la funcion
         $validation = \Config\Services::validation();
         
-        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => new MovieModel()], 'new');
+        $this->_loadDefaulView('Crear una Pelicula', ['validation' => $validation, "movie" => new MovieModel(), "categories" => $category->asObject()->findAll()], 'new');
         
     }
 
@@ -80,7 +81,8 @@ class Movie extends BaseController{
         ])){
             $id = $movie->insert([
                 "title" => $this->request->getPost('title'),
-                "description" => $this->request->getPost('description')
+                "description" => $this->request->getPost('description'),
+                "categoryId" => $this->request->getPost('categoryId')
             ]);// Insserta los datos en la tabla
             return redirect()->to("/movie/$id/edit")/*redirecciona a una url dada*/->with("message", "pelicula creada con exito");//manda un mensaje tipo flash mendiante la SECION el cual solo fucnciona por una peticion
         }

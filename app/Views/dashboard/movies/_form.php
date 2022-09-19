@@ -10,4 +10,10 @@
     <label for="image">Imagen</label>
     <input type="file" name="image" />
 <?php endif ?>
+<label for="categoryId">Categoria</label>
+<select name="categoryId" id="">
+    <?php foreach($categories as $c): ?>
+        <option value="<?= $c->id ?>"><?= $c->title ?></option>
+    <?php endforeach ?>
+</select>
 <input type="submit" name="submit" value="<?= $textButton ?>" />

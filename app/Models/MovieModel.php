@@ -8,7 +8,7 @@ class MovieModel extends Model
 {
     protected $table = 'movies';
     protected $primaryKey = 'id';
-    protected $allowedFields = ["title","description"];
+    protected $allowedFields = ["title","description","categoryId"];
 
     public function get($id = null)
     {
