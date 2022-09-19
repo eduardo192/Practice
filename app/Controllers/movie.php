@@ -3,7 +3,7 @@
 // este use se coloca para que podamos alcanzar el Base Controller desde la capreta en la que estamos.
 use App\Models\MovieModel;
 use App\Models\MovieImagesModel;
-
+use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class Movie extends BaseController{
    
@@ -38,6 +38,11 @@ class Movie extends BaseController{
 
     public function edit($id = null){
         $movie = new MovieModel();
+
+        if ($movie->find($id) == null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+        
 
         echo "Session: ";
 
@@ -87,11 +92,20 @@ class Movie extends BaseController{
     public function show ($id = null){
         $movie = new MovieModel();
 
-        var_dump($movie->get($id));
+        if ($movie->find($id) == null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        var_dump($movie->find($id));
     }
 
     public function delete ($id = null){
         $movie = new MovieModel();
+
+        if ($movie->find($id) == null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+      
         $movie->delete($id);
         return redirect()->to("/movie")->with("message", "pelicula eliminada con exito");        
     }
@@ -104,7 +118,7 @@ class Movie extends BaseController{
             if ($imagefile->isValid() && ! $imagefile->hasMoved()) {
                 
                 $newName = $imagefile->getRandomName();
-                $imagefile->move(WRITEPATH . 'uploads', $newName);
+                $imagefile->move(WRITEPATH . 'uploads/movies/'.$movieId, $newName);
 
                 $images->save([
                     "movieId" => $movieId,
