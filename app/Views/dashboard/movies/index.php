@@ -6,6 +6,7 @@
         <tr>
             <th>Id</th>
             <th>Nombre</th>
+            <th>Categoria</th>
             <th>Opciones</th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
             <tr>
                 <td><?= $m->id ?></td>
                 <td><?= $m->title ?></td>
+                <td><?= $m->category ?></td>
                 <td>
                     <form action="/movie/delete/<?= $m->id ?>" method="POST">
                         <input type="submit" name="submit" value="Borrar" />

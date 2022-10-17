@@ -9,15 +9,19 @@ use \CodeIgniter\Exceptions\PageNotFoundException;
 class Movie extends BaseController{
    
     public function index(){
-        echo session("message");
+        
         $movie = new MovieModel();
-
+        
+        
         $data = [
             /* 
                 paginate nos ayuda a hacer la paginacion.
                 El primer parametro indica la cantidad de registros que queremos traer a la vez.
             */
-            'movies' => $movie->asObject()->paginate(10),
+            'movies' => $movie->asObject()
+            ->select("movies.*, categories.title AS category")
+            ->join("categories", "categories.id = movies.categoryId")
+            ->paginate(10),
             //instncia para poder usar el pager link
             'pager' => $movie->pager
 

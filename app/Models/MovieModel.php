@@ -19,4 +19,11 @@ class MovieModel extends Model
         return $this->asObject()->where(['id' => $id]);
     }
 
+    function getAll(){
+        return $this->asArray()
+        ->select("movies.*, categories.title AS category")
+        ->join("categories", "categories.id = movies.categoryId")
+        ->first();
+    }
+
 }
