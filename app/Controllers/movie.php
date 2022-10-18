@@ -63,10 +63,7 @@ class Movie extends BaseController{
     public function update($id = null){
         $movie = new MovieModel();
 
-        if($this->validate([
-            'title' => 'required|min_length[3]|max_length[255]',
-            'description' => 'min_length[3]|max_length[5000]'
-        ])){
+        if($this->validate("movies")){
             $movie->update($id, [
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description'),
@@ -82,10 +79,7 @@ class Movie extends BaseController{
     public function testPost(){
         $movie = new MovieModel();
 
-        if($this->validate([
-            'title' => 'required|min_length[3]|max_length[255]',
-            'description' => 'min_length[3]|max_length[5000]'
-        ])){
+        if($this->validate("movies")){
             $id = $movie->insert([
                 "title" => $this->request->getPost('title'),
                 "description" => $this->request->getPost('description'),
