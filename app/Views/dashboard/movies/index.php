@@ -19,10 +19,10 @@
                 <td><?= $m->category ?></td>
                 <td>
                     <form action="/movie/delete/<?= $m->id ?>" method="POST">
-                        <input type="submit" name="submit" value="Borrar" />
+                        <input class="btn btn-primary btn-sm" type="submit" name="submit" value="Borrar" />
                     </form>
 
-                    <a href="/movie/<?= $m->id ?>/edit">Editar</a>
+                    <a class="mt-2 btn btn-danger btn-sm" href="/movie/<?= $m->id ?>/edit">Editar</a>
                 </td>
             </tr>
         <?php endforeach ?>

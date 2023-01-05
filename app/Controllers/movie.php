@@ -27,6 +27,7 @@ class Movie extends BaseController{
 
         ];
 
+        //print_r($data["movies"]);
         //los datos que se quieren mandar hacia las vistas se ponen como segundo paramatro en la vista y debe ser un array 
         $this->_loadDefaulView('Listado de Peliculas',$data,'index');
     }

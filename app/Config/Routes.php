@@ -36,6 +36,13 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+$routes->get("pelicula", "Pelicula::index");
+$routes->get("pelicula/new", "Pelicula::new");
+$routes->post("pelicula", "Pelicula::create");
+
+$routes->get("pelicula/xx/edit", "Pelicula::edit");
+$routes->put("pelicula", "Pelicula::create");
 // en esta ruta se configura para poder mandar datos desde la url a la funcion de algun controlador
 /*
     - Se tiene que especificar el tipo de dato que se va a enviar, en este caso el (:any).
