@@ -35,14 +35,20 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
 
-$routes->get("pelicula", "Pelicula::index");
-$routes->get("pelicula/new", "Pelicula::new");
-$routes->post("pelicula", "Pelicula::create");
+/* Rutas de Pelicuas practica de rutas
 
-$routes->get("pelicula/xx/edit", "Pelicula::edit");
-$routes->put("pelicula", "Pelicula::create");
+    $routes->get('/', 'Home::index');
+
+    $routes->get("pelicula", "Pelicula::index");
+    $routes->get("pelicula/new", "Pelicula::new");
+    $routes->post("pelicula", "Pelicula::create");
+
+    $routes->get("pelicula/xx/edit", "Pelicula::edit");
+    $routes->put("pelicula", "Pelicula::create");
+
+*/
+
 // en esta ruta se configura para poder mandar datos desde la url a la funcion de algun controlador
 /*
     - Se tiene que especificar el tipo de dato que se va a enviar, en este caso el (:any).
@@ -57,34 +63,40 @@ $routes->put("pelicula", "Pelicula::create");
     se puede acceder a la ruta con el nombre que se le ponga  a la misma medinate un metodo, 
     para asi en caso de que se tenga qie modicfiar la url no haya problemas dentro del codigo
 */
-$routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
-//$routes->get('/contacto', 'Home::contacto');
+/* Rutas de la version antigua del video
+    $routes->get('/contactarme/(:any)', 'Home::contacto/$1',['as' => 'contacto']);
+    //$routes->get('/contacto', 'Home::contacto');
 
-$routes->get('/category', 'dashboard\CategoryController::index');
-$routes->post('/movie/post', 'Movie::testPost');
-$routes->post('/movie/delete/(:num)', 'Movie::delete/$1');
+    $routes->get('/category', 'dashboard\CategoryController::index');
+    $routes->post('/movie/post', 'Movie::testPost');
+    $routes->post('/movie/delete/(:num)', 'Movie::delete/$1');
 
-/*
-    Agrupacion de URL.
+    /*
+        Agrupacion de URL.
 
-    en este  caso se agrupan las urls del controlador movie.
-    Para acceder a ellas se tiene que hacer de la sig manera mgarcia.com/dashboard/"url del controlador"
+        en este  caso se agrupan las urls del controlador movie.
+        Para acceder a ellas se tiene que hacer de la sig manera mgarcia.com/dashboard/"url del controlador"
+    
+    
+    $routes->group('dashboard', function($routes){
+        
+        /*$routes->get('movie', 'dashboard\MovieController::index');
+        $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
+        $routes->get('movie/show', 'dashboard\MovieController::show');
+    });
+
+    $routes->get('movie', 'Movie::index');
+    $routes->get('movie/show', 'Movie::show');
+    $routes->get('movie/new', 'Movie::new');
+    $routes->get("movie/(:any)/edit", "Movie::edit/$1");
+    $routes->post("movie/update/(:any)", "Movie::update/$1");
+
 */
 
-$routes->group('dashboard', function($routes){
-    
-    /*$routes->get('movie', 'dashboard\MovieController::index');
-    $routes->get('movie/test/(:any)', 'dashboard\MovieController::test/$1');
-    $routes->get('movie/show', 'dashboard\MovieController::show');*/
-});
+/*$routes->get('/', 'Home::index');
+$routes->get('pelicula',"PeliculaController::index");*/
 
-$routes->get('movie', 'Movie::index');
-$routes->get('movie/show', 'Movie::show');
-$routes->get('movie/new', 'Movie::new');
-$routes->get("movie/(:any)/edit", "Movie::edit/$1");
-$routes->post("movie/update/(:any)", "Movie::update/$1");
-
-
+$routes->presenter("pelicula");
 /*
  * --------------------------------------------------------------------
  * Additional Routing
