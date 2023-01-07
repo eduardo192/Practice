@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="/dashboard/categoria/create" method="post">
-        <?= view("Categoria/_form",["op" => "Crear"]) ?>
+        <?= view("Dashboard/Categoria/_form",["op" => "Crear"]) ?>
     </form>
 </body>
 </html>

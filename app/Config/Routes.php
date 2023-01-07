@@ -100,9 +100,18 @@ $routes->get('pelicula',"PeliculaController::index");*/
 $routes->group("dashboard",function($routes){
     // to access the path correctly is required set "dashboard"
     // Example: host/dashbord/pelicula/.. 
-    $routes->presenter("pelicula");
+    /**
+     * When the path of controller chenge is required specify like parameter
+     */
+    $routes->presenter("pelicula",["controller" => "Dashboard\Pelicula"]/*With this parameter specify the of the controller */);
+    
     // Example: host/dashbord/categoria/..
-    $routes->presenter("categoria");
+    // we can include especific routes with "only"
+    //$routes->presenter("categoria",["only" => ["index","new", "create"]]);
+    // Also we can exclude routes whit exept.
+    // example 
+    $routes->presenter("categoria",["except" => "show", "controller" => "Dashboard\Categoria"]);
+    
 
     //Routes with name
     // We can't access to route with the name from the browser

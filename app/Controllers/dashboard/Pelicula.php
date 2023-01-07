@@ -1,6 +1,7 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard;
+use App\Controllers\BaseController;
 use App\Models\PeliculaModel;
 /*
 no se necisita poner el BaseController ya que los archivos se encuentran en el mismo nivel.
@@ -16,7 +17,7 @@ class Pelicula extends BaseController{
         $peliculaModel = new PeliculaModel();
 
         // Print a view
-        echo view("/Pelicula/show",[
+        echo view("/Dashboard/Pelicula/show",[
             // Send varible to the view with a movie
             "pelicula" => $peliculaModel->find($id)
         ]);
@@ -28,7 +29,7 @@ class Pelicula extends BaseController{
         $peliculaModel = new PeliculaModel();
  
         // Print view and send data 
-        echo view("Pelicula/index",[
+        echo view("/Dashboard/Pelicula/index",[
             // it gets all movies
             "peliculas" => $peliculaModel->findAll(),
         ]);
@@ -60,7 +61,7 @@ class Pelicula extends BaseController{
         //Create request form peliculaModel
         $peliculaModel = new PeliculaModel();
 
-        echo view("Pelicula/edit",[
+        echo view("/Dashboard/Pelicula/edit",[
             // Send specific movie
             "pelicula" => $peliculaModel->find($id)
         ]);
@@ -105,7 +106,7 @@ class Pelicula extends BaseController{
     public function new()
     {
         //pritn view
-        echo view("pelicula/new",[
+        echo view("/Dashboard/pelicula/new",[
             /**
              * The view break down because it waits for pelicula.
              * We send a pelicula

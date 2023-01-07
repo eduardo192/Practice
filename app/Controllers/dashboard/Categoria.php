@@ -1,7 +1,8 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard;
 use App\Models\CategoriaModel;
+use App\Controllers\BaseController;
 /*
 no se necisita poner el BaseController ya que los archivos se encuentran en el mismo nivel.
 Si el aechivo estuviese dentro de otra carpeta si se tiene que poner 
@@ -20,7 +21,7 @@ class Categoria extends BaseController{
         $categotias = $categoriaModel->findAll();
 
         // Return a view and send categorias
-        return view("Categoria/index",["categorias" => $categotias]);
+        return view("/Dashboard/Categoria/index",["categorias" => $categotias]);
         
     }
 
@@ -28,7 +29,7 @@ class Categoria extends BaseController{
     public function new()
     {
         // return the view
-        return view("Categoria/new", [
+        return view("/Dashboard/Categoria/new", [
             "categoria" => [
                 "title" => ""
             ]
@@ -68,7 +69,7 @@ class Categoria extends BaseController{
         $categoria = $categoriaModel->find($id);
 
         // return view and sends the categry
-        return view("Categoria/show",[
+        return view("/Dashboard/Categoria/show",[
             "categoria" => $categoria
         ]);
         
@@ -83,7 +84,7 @@ class Categoria extends BaseController{
         $categoria = $categoriaModel->find($id);
 
         // return view and sends the categry
-        return view("Categoria/edit",[
+        return view("/Dashboard/Categoria/edit",[
             "categoria" => $categoria
         ]);
     }
