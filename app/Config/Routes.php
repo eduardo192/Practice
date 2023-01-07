@@ -96,8 +96,20 @@ $routes->set404Override();
 /*$routes->get('/', 'Home::index');
 $routes->get('pelicula',"PeliculaController::index");*/
 
-$routes->presenter("pelicula");
-$routes->presenter("categoria");
+// This is used to group the paths
+$routes->group("dashboard",function($routes){
+    // to access the path correctly is required set "dashboard"
+    // Example: host/dashbord/pelicula/.. 
+    $routes->presenter("pelicula");
+    // Example: host/dashbord/categoria/..
+    $routes->presenter("categoria");
+
+    //Routes with name
+    // We can't access to route with the name from the browser
+    //$routes->get("test", "Pelicula::test",["as" => "pelicula.test"]);
+});
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

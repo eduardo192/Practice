@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/categoria/create" method="post">
+    <form action="/dashboard/categoria/create" method="post">
         <?= view("Categoria/_form",["op" => "Crear"]) ?>
     </form>
 </body>

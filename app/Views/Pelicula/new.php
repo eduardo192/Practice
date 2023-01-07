@@ -9,7 +9,7 @@
 <body>
 
     <!-- Make form to send data -->
-    <form action="/pelicula/create" method="post">
+    <form action="/dashboard/pelicula/create" method="post">
         <!-- The data is processes by Pelicula controller though create fucntion-->
         <!-- Load the inputs of form from view _form, you need set a value of the button by "op" -->
         <?= view("Pelicula/_form",["op" => "Crear"])//op must contents the value fo the button   ?>

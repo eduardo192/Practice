@@ -49,8 +49,9 @@ class Categoria extends BaseController{
 
         // check result
         if (gettype($result) == "integer"){
-            // if it is an integer, the insert worked.
-            return "Success";
+            // if result is an integer, the insert worked and redirect.
+            //This redirect to index funccion in Pelicula Controller
+            return redirect()->to("/dashboard/categoria");
         }else{
             // if it aren't integer, the insert didn´t work
             return "erro al insertar data";
@@ -100,7 +101,8 @@ class Categoria extends BaseController{
             "title" => $this->request->getPost("title")
         ]);
 
-        return $resultUpdate;
+        // This redirect to previous path
+        return redirect()->back();
     }
 
 
@@ -114,7 +116,8 @@ class Categoria extends BaseController{
         // It delete a record
         $delete = $categoriaModel->delete($id);
 
-        return $delete;
+        // This redirect to previous path
+        return redirect()->back();
         
     }
 

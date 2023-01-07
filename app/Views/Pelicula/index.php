@@ -9,7 +9,7 @@
 <body>
     <h1>Listado de Peliculas</h1>
     <!-- Link redirect to view create movie -->
-    <a href="/pelicula/new">Crear</a>
+    <a href="/dashboard/pelicula/new">Crear</a>
     <table>
         <tr>
             <th>id</th>
@@ -26,11 +26,11 @@
                 <td><?= $p["description"] ?></td>
                 <td>
                     <!-- Set id in the url that redirect to show funciton in Pelicula controller -->
-                    <a href="/pelicula/show/<?= $p["id"] ?>">Show</a>
+                    <a href="/dashboard/pelicula/show/<?= $p["id"] ?>">Show</a>
                     <!-- Set ids in the url that redirect to edit funciton -->
-                    <a href="/pelicula/edit/<?= $p["id"] ?>">Edit</a>
+                    <a href="/dashboard/pelicula/edit/<?= $p["id"] ?>">Edit</a>
                     <!-- Set ids in the url that redirect to remove funciton -->
-                    <form action="/pelicula/delete/<?= $p["id"] ?>" method="post">
+                    <form action="/dashboard/pelicula/delete/<?= $p["id"] ?>" method="post">
                         <button type="submit">Delete</button>
                     </form>
                 </td>

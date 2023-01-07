@@ -9,7 +9,7 @@
 <body>
 
     <!-- Make form to update data -->
-    <form action="/pelicula/update/<?= $pelicula["id"] ?>" method="post">
+    <form action="/dashboard/pelicula/update/<?= $pelicula["id"] ?>" method="post">
         <!-- The data is processes by Pelicula controller though create fucntion-->
         <!-- Load the inputs of form from view _form, you need set a value of the button by "op" -->
         <?= view("Pelicula/_form",["op" => "Actualizar"])//op must contents the name fo the button   ?>

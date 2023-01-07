@@ -24,6 +24,7 @@ class Pelicula extends BaseController{
 
     // This function show all movies in a view
     public function index(){
+        //Create request form peliculaModel
         $peliculaModel = new PeliculaModel();
  
         // Print view and send data 
@@ -49,7 +50,8 @@ class Pelicula extends BaseController{
             "description" => $this->request->getPost("description")
         ]);
 
-        echo "Creado";
+        //This redirect to index funccion in Pelicula Controller
+        return redirect()->to("/dashboard/pelicula");
     }
 
     // function to show data of the movoie to update
@@ -77,7 +79,14 @@ class Pelicula extends BaseController{
             "description" => $this->request->getPost("description")
         ]);
 
-        echo "update";
+        // This redirect to previous path
+        return redirect()->back();
+        
+        // This redirect to especific path
+        //return redirect()->to("dashboard/pelicula");
+
+        //We can use route's name in the redirect
+        //return redirect()->route("pelicula.test");
     }
 
     public function delete($id)
@@ -88,7 +97,8 @@ class Pelicula extends BaseController{
         // Delete an espesific movie
         $peliculaModel->delete($id);
 
-        echo "Delete";
+        // This redirect to previous path
+        return redirect()->back();
     }
 
     // This function controls the view to create a new movie 
