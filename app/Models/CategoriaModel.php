@@ -8,6 +8,8 @@ class CategoriaModel extends Model
 {
     protected $table = "categorias";
     protected $primaryKey = "id";
+    protected $allowedFields = ["title"];
+    protected $useAutoIncrement = true;
 
     public function get($id = null)
     {

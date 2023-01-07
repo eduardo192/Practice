@@ -12,6 +12,7 @@
     <a href="/pelicula/new">Crear</a>
     <table>
         <tr>
+            <th>id</th>
             <th>Titulo</th>
             <th>Description</th>
             <th>Opciones</th>
