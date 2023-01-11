@@ -52,7 +52,8 @@ class Pelicula extends BaseController{
         ]);
 
         //This redirect to index funccion in Pelicula Controller
-        return redirect()->to("/dashboard/pelicula");
+        //We can send flash messages with the function "with". It needs 2 params, a key and the message
+        return redirect()->to("/dashboard/pelicula")->with("mensaje", " Registro Creado Exitosamente");
     }
 
     // function to show data of the movoie to update
@@ -81,7 +82,8 @@ class Pelicula extends BaseController{
         ]);
 
         // This redirect to previous path
-        return redirect()->back();
+        //We can send flash messages with the function "with". It needs 2 params, a key and the message
+        return redirect()->back()->with("mensaje", " Registro Actualizado Exitosamente");
         
         // This redirect to especific path
         //return redirect()->to("dashboard/pelicula");
@@ -99,7 +101,8 @@ class Pelicula extends BaseController{
         $peliculaModel->delete($id);
 
         // This redirect to previous path
-        return redirect()->back();
+        //We can send flash messages with the function "with". It needs 2 params, a key and the message
+        return redirect()->back()->with("mensaje", " Registro Eliminado Exitosamente");
     }
 
     // This function controls the view to create a new movie 

@@ -52,7 +52,8 @@ class Categoria extends BaseController{
         if (gettype($result) == "integer"){
             // if result is an integer, the insert worked and redirect.
             //This redirect to index funccion in Pelicula Controller
-            return redirect()->to("/dashboard/categoria");
+            //We can send flash messages with the function "with". It needs 2 params, a key and the message
+            return redirect()->to("/dashboard/categoria")->with("mensaje", " Registro Creado Exitosamente");
         }else{
             // if it aren't integer, the insert didn´t work
             return "erro al insertar data";
@@ -103,7 +104,8 @@ class Categoria extends BaseController{
         ]);
 
         // This redirect to previous path
-        return redirect()->back();
+        //We can send flash messages with the function "with". It needs 2 params, a key and the message
+        return redirect()->back()->with("mensaje", " Registro Actualizado Exitosamente");
     }
 
 
@@ -118,6 +120,12 @@ class Categoria extends BaseController{
         $delete = $categoriaModel->delete($id);
 
         // This redirect to previous path
+        //We can send flash messages with the function "with". It needs 2 params, a key and the message
+        //return redirect()->back()->with("mensaje", " Registro Eliminado Exitosamente");
+        
+        //We have another way to send flash message
+        session()->setFlashdata("mensaje", " Registro Eliminado Exitosamente");//The params are the same that the other way.
+        
         return redirect()->back();
         
     }

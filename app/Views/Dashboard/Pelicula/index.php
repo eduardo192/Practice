@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peliculas</title>
-</head>
-<body>
+<!-- load the lyout -->
+<?= $this->extend("Layouts/dashboard") ?>
+
+<!-- Select the title like "header" to it can be render -->
+<?= $this->section("header")  ?>
     <h1>Listado de Peliculas</h1>
+<?= $this->endSection() ?>
+
+<!-- we indicate what it will be show when we will render the sction "contenido"  -->
+<?= $this->section("contenido")  ?>
+
+
     <!-- Link redirect to view create movie -->
     <a href="/dashboard/pelicula/new">Crear</a>
     <table>
@@ -15,7 +17,7 @@
             <th>id</th>
             <th>Titulo</th>
             <th>Description</th>
-            <th>Opciones</th>
+            <th colspan="4">Opciones</th>
         </tr>
         <!-- Imprir peliculas dentro del arrya mandado como paremtro desde el controlador peliculas, funcion index -->
         <?php foreach ($peliculas as $key => $p) : ?>
@@ -24,19 +26,20 @@
                 <td><?= $p["id"] ?></td>
                 <td><?= $p["title"] ?></td>
                 <td><?= $p["description"] ?></td>
+                <!-- Set id in the url that redirect to show funciton in Pelicula controller -->
+                <td><a href="/dashboard/pelicula/show/<?= $p["id"] ?>">Show</a></td>
+                <!-- Set ids in the url that redirect to edit funciton -->
+                <td><a href="/dashboard/pelicula/edit/<?= $p["id"] ?>">Edit</a></td>
                 <td>
-                    <!-- Set id in the url that redirect to show funciton in Pelicula controller -->
-                    <a href="/dashboard/pelicula/show/<?= $p["id"] ?>">Show</a>
-                    <!-- Set ids in the url that redirect to edit funciton -->
-                    <a href="/dashboard/pelicula/edit/<?= $p["id"] ?>">Edit</a>
                     <!-- Set ids in the url that redirect to remove funciton -->
                     <form action="/dashboard/pelicula/delete/<?= $p["id"] ?>" method="post">
                         <button type="submit">Delete</button>
                     </form>
-                </td>
+                </td>                
+                    
             </tr>
         <?php endforeach ?>
 
     </table>
-</body>
-</html>
+
+<?= $this->endSection() ?>

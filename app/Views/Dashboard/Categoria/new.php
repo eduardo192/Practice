@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<!-- load the lyout -->
+<?= $this->extend("Layouts/dashboard") ?>
+
+<!-- Select the title like "header" to it can be render -->
+<?= $this->section("header") ?>
+    <!-- Title of seccion -->
+    <h1>Crear Categoria</h1>
+
+<?= $this->endSection() ?>
+
+<!-- Select the content like "header" to it can be render -->
+<?= $this->section("contenido") ?>
+    
     <form action="/dashboard/categoria/create" method="post">
         <?= view("Dashboard/Categoria/_form",["op" => "Crear"]) ?>
     </form>
-</body>
-</html>
+
+<?= $this->endSection() ?>
+    
+    
