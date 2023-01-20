@@ -11,6 +11,8 @@
 
 <!-- Select the content to load in the lyout -->
 <?= $this->section("contenido") ?>
+    <!-- load view with the validation errors -->
+    <?= view("Partials/_fromError") ?>
     
     <!-- Form to update the data and send -->
     <!-- The Categoria Controller would send the categoty to update -->

@@ -10,6 +10,8 @@
 
 <!-- Select the content like "header" to it can be render -->
 <?= $this->section("contenido") ?>
+    <!-- load view with the validation errors -->
+    <?= view("Partials/_fromError") ?>
     
     <form action="/dashboard/categoria/create" method="post">
         <?= view("Dashboard/Categoria/_form",["op" => "Crear"]) ?>

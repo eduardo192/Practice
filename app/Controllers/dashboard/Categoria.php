@@ -42,21 +42,38 @@ class Categoria extends BaseController{
         // request of CategoriaModel
         $categoriaModel = new CategoriaModel();
 
-        // insert data in Categoria table
-        // the method return the id of record
-        $result =  $categoriaModel->insert([
-            "title" => $this->request->getPost("title") // get the data
-        ]);
+        //validate data
+        // this return boolean: "True" or "False"
+        // set the group or rules defined in /app/Config/Validation
+        if ($this->validate("categorias")){
 
-        // check result
-        if (gettype($result) == "integer"){
-            // if result is an integer, the insert worked and redirect.
-            //This redirect to index funccion in Pelicula Controller
-            //We can send flash messages with the function "with". It needs 2 params, a key and the message
-            return redirect()->to("/dashboard/categoria")->with("mensaje", " Registro Creado Exitosamente");
+            // insert data in Categoria table
+            // the method return the id of record
+            $result =  $categoriaModel->insert([
+                "title" => $this->request->getPost("title") // get the data
+            ]);
+
+            // check result
+            if (gettype($result) == "integer"){
+                // if result is an integer, the insert worked and redirect.
+                //This redirect to index funccion in Pelicula Controller
+                //We can send flash messages with the function "with". It needs 2 params, a key and the message
+                return redirect()->to("/dashboard/categoria")->with("mensaje", " Registro Creado Exitosamente");
+            }else{
+                // if it aren't integer, the insert didn´t work
+                return "erro al insertar data";
+            }
         }else{
-            // if it aren't integer, the insert didn´t work
-            return "erro al insertar data";
+            // This return the errors in the validation
+            // list all erros
+            //var_dump($this->validator->listErrors());
+            // in this case get the errors from specific input
+            var_dump($this->validator->getErrors("title"));
+
+            // send flash data to view with the errors
+            session()->setFlashdata(["validation" => $this->validator]);
+
+            return redirect()->back()->withInput();
         }
     }
 
@@ -97,11 +114,31 @@ class Categoria extends BaseController{
         // request of CategoriaModel
         $categoriaModel = new CategoriaModel();
 
-        // the method Updaate the record
-        // it return nothing
-        $resultUpdate = $categoriaModel->update($id,[
-            "title" => $this->request->getPost("title")
-        ]);
+        //validate data
+        // this return boolean: "True" or "False"
+        // set the group or rules defined in /app/Config/Validation
+        if ($this->validate("categorias")){
+
+            // the method Updaate the record
+            // it return nothing
+            $resultUpdate = $categoriaModel->update($id,[
+                "title" => $this->request->getPost("title")
+            ]);
+
+        }else{
+            // This return the errors in the validation
+            // list all erros
+            //var_dump($this->validator->listErrors());
+            // in this case get the errors from specific input
+            var_dump($this->validator->getErrors("title"));
+
+            // send flash data to view with the errors
+            session()->setFlashdata(["validation" => $this->validator]);
+
+            return redirect()->back()->withInput();
+        }
+
+        
 
         // This redirect to previous path
         //We can send flash messages with the function "with". It needs 2 params, a key and the message

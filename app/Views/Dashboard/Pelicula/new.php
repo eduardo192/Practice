@@ -9,6 +9,8 @@
 <!-- we indicate what it will be show when we will render the sction "contenido"  -->
 <?= $this->section("contenido")  ?>
     
+    <!-- load view with the validation errors -->
+    <?= view("Partials/_fromError") ?>
     
     <!-- Shows the flash message -->
     <?= view("Partials/_session") ?>

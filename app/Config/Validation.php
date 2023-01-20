@@ -47,4 +47,16 @@ class Validation extends BaseConfig
     //--------------------------------------------------------------------
     // Rules
     //--------------------------------------------------------------------
+
+    //define validation rules to categories
+    public $categorias = [
+        // the key will be appropriate for name of item in the form
+        "title" => "required|min_length[3]|max_length[255]"
+    ];
+
+    // define validation rules to movies
+    public $peliculas = [
+        "title" => "required|min_length[3]|max_length[255]",
+        "description" => "required|min_length[3]|max_length[2000]",
+    ];
 }

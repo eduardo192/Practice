@@ -44,12 +44,33 @@ class Pelicula extends BaseController{
         // print the results from property of class basecontorller
         var_dump($this->request->getPost("title"));// this si the same that $_POST["title"]
 
-        // insert the data
-        $peliculaModel->insert([
-            // KEY => VALUE
-            "title" => $this->request->getPost("title"), // This function gets the data from post request
-            "description" => $this->request->getPost("description")
-        ]);
+
+        //validate data
+        // this return boolean: "True" or "False"
+        // set the group or rules defined in /app/Config/Validation
+        if ($this->validate("peliculas")){
+
+            // insert the data
+            $peliculaModel->insert([
+                // KEY => VALUE
+                "title" => $this->request->getPost("title"), // This function gets the data from post request
+                "description" => $this->request->getPost("description")
+            ]);
+
+        }else{
+            // This return the errors in the validation
+            // list all erros
+            //var_dump($this->validator->listErrors());
+            // in this case get the errors from specific input
+            var_dump($this->validator->getErrors("title"));
+
+            // send flash data to view with the errors
+            session()->setFlashdata(["validation" => $this->validator]);
+
+            return redirect()->back()->withInput();
+        }
+
+       
 
         //This redirect to index funccion in Pelicula Controller
         //We can send flash messages with the function "with". It needs 2 params, a key and the message
@@ -74,12 +95,32 @@ class Pelicula extends BaseController{
         //Create request form peliculaModel
         $peliculaModel = new PeliculaModel();
 
-        // send the data to update
-        // The method needs an id and the data to update
-        $peliculaModel->update($id,[
-            "title" => $this->request->getPost("title"),
-            "description" => $this->request->getPost("description")
-        ]);
+        //validate data
+        // this return boolean: "True" or "False"
+        // set the group or rules defined in /app/Config/Validation
+        if ($this->validate("peliculas")){
+
+            // send the data to update
+            // The method needs an id and the data to update
+            $peliculaModel->update($id,[
+                "title" => $this->request->getPost("title"),
+                "description" => $this->request->getPost("description")
+            ]);
+
+        }else{
+            // This return the errors in the validation
+            // list all erros
+            //var_dump($this->validator->listErrors());
+            // in this case get the errors from specific input
+            var_dump($this->validator->getErrors("title"));
+
+            // send flash data to view with the errors
+            session()->setFlashdata(["validation" => $this->validator]);
+
+            return redirect()->back()->withInput();
+        }
+
+        
 
         // This redirect to previous path
         //We can send flash messages with the function "with". It needs 2 params, a key and the message
