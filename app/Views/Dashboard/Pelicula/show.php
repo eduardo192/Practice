@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Variable sent by movie controller in the function show -->
     <!-- It contents a movie -->
-    <title><?= $pelicula["title"] ?></title>
+    <title><?= $pelicula->title ?></title>
 </head>
 <body>
     
-    <h1>Titulo: <?= $pelicula["title"] ?></h1>
-    <p>Descripcion: <?= $pelicula["description"] ?></p>
+    <h1>Titulo: <?= $pelicula->title ?></h1>
+    <p>Descripcion: <?= $pelicula->description ?></p>
 </body>
 </html>

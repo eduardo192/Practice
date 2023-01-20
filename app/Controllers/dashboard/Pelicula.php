@@ -19,7 +19,7 @@ class Pelicula extends BaseController{
         // Print a view
         echo view("/Dashboard/Pelicula/show",[
             // Send varible to the view with a movie
-            "pelicula" => $peliculaModel->find($id)
+            "pelicula" => $peliculaModel->asObject()->find($id)
         ]);
     }
 
@@ -31,7 +31,7 @@ class Pelicula extends BaseController{
         // Print view and send data 
         echo view("/Dashboard/Pelicula/index",[
             // it gets all movies
-            "peliculas" => $peliculaModel->findAll(),
+            "peliculas" => $peliculaModel->asObject()->findAll(),
         ]);
     }
 
@@ -85,7 +85,7 @@ class Pelicula extends BaseController{
 
         echo view("/Dashboard/Pelicula/edit",[
             // Send specific movie
-            "pelicula" => $peliculaModel->find($id)
+            "pelicula" => $peliculaModel->asObject()->find($id)
         ]);
     }
 
@@ -156,10 +156,7 @@ class Pelicula extends BaseController{
              * We send a pelicula
              */
 
-             "pelicula" => [
-                "title" => "",
-                "description" => ""
-             ]
+             "pelicula" => new PeliculaModel()
         ]);
     }
 } 

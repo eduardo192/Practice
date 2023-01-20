@@ -16,7 +16,7 @@
     
     <!-- Form to update the data and send -->
     <!-- The Categoria Controller would send the categoty to update -->
-    <form action="/dashboard/categoria/update/<?= $categoria["id"] ?>" method="post">
+    <form action="/dashboard/categoria/update/<?= $categoria->id ?>" method="post">
        <?= view("Dashboard/Categoria/_form",["op" => "Actualizar"]) ?>
     </form>
 

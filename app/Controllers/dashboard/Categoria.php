@@ -18,7 +18,7 @@ class Categoria extends BaseController{
         $categoriaModel = new CategoriaModel();
 
         // Get all Categories
-        $categotias = $categoriaModel->findAll();
+        $categotias = $categoriaModel->asObject()->findAll();
 
         // Return a view and send categorias
         return view("/Dashboard/Categoria/index",["categorias" => $categotias]);
@@ -30,9 +30,7 @@ class Categoria extends BaseController{
     {
         // return the view
         return view("/Dashboard/Categoria/new", [
-            "categoria" => [
-                "title" => ""
-            ]
+            "categoria" => new CategoriaModel()
         ]);
     }
 
@@ -84,7 +82,7 @@ class Categoria extends BaseController{
         $categoriaModel = new CategoriaModel();
 
         // Select categoria with the id
-        $categoria = $categoriaModel->find($id);
+        $categoria = $categoriaModel->asObject()->find($id);
 
         // return view and sends the categry
         return view("/Dashboard/Categoria/show",[
@@ -99,7 +97,7 @@ class Categoria extends BaseController{
         $categoriaModel = new CategoriaModel();
 
         // Select categoria with the id
-        $categoria = $categoriaModel->find($id);
+        $categoria = $categoriaModel->asObject()->find($id);
 
         // return view and sends the categry
         return view("/Dashboard/Categoria/edit",[

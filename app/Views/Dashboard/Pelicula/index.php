@@ -23,16 +23,16 @@
         <?php foreach ($peliculas as $key => $p) : ?>
             <tr>
                 <!-- Print each data in a table -->
-                <td><?= $p["id"] ?></td>
-                <td><?= $p["title"] ?></td>
-                <td><?= $p["description"] ?></td>
+                <td><?= $p->id?></td>
+                <td><?= $p->title ?></td>
+                <td><?= $p->description ?></td>
                 <!-- Set id in the url that redirect to show funciton in Pelicula controller -->
-                <td><a href="/dashboard/pelicula/show/<?= $p["id"] ?>">Show</a></td>
+                <td><a href="/dashboard/pelicula/show/<?= $p->id ?>">Show</a></td>
                 <!-- Set ids in the url that redirect to edit funciton -->
-                <td><a href="/dashboard/pelicula/edit/<?= $p["id"] ?>">Edit</a></td>
+                <td><a href="/dashboard/pelicula/edit/<?= $p->id ?>">Edit</a></td>
                 <td>
                     <!-- Set ids in the url that redirect to remove funciton -->
-                    <form action="/dashboard/pelicula/delete/<?= $p["id"] ?>" method="post">
+                    <form action="/dashboard/pelicula/delete/<?= $p->id ?>" method="post">
                         <button type="submit">Delete</button>
                     </form>
                 </td>                

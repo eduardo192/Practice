@@ -7,6 +7,6 @@
     <title>Categoria</title>
 </head>
 <body>
-    <h1> Titulo: <?= $categoria["title"] ?></h1>
+    <h1> Titulo: <?= $categoria->title ?></h1>
 </body>
 </html>
